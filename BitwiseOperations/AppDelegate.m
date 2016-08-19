@@ -15,7 +15,6 @@
 @property (nonatomic, strong) NSMutableArray *mArrayStudents;
 
 
-
 @end
 
 @implementation AppDelegate
@@ -49,8 +48,7 @@
         [self.mArrayStudents addObject:studentObj];
         NSLog(@"%@",[studentObj description]);
     
-    }    
-    // Override point for customization after application launch.
+    }
     return YES;
 }
 

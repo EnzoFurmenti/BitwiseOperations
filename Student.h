@@ -20,7 +20,6 @@ typedef enum {
     StudentSubjectArt             = 1 <<  8,
     StudentSubjectGeometry        = 1 <<  9,
     StudentSubjectEconomy         = 1 <<  10
-    
 }StudentSubjectType;
 
 @interface Student : NSObject
