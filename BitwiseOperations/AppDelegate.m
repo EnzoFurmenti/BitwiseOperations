@@ -13,6 +13,9 @@
 @interface AppDelegate ()
 
 @property (nonatomic, strong) NSMutableArray *mArrayStudents;
+@property (nonatomic, strong) NSMutableArray *mArrayGumStudents;
+@property (nonatomic, strong) NSMutableArray *mArrayTechStudents;
+@property (nonatomic, assign) NSInteger quantityProgrammers;
 
 
 @end
@@ -49,6 +52,36 @@
         NSLog(@"%@",[studentObj description]);
     
     }
+    
+    
+    for (Student *currentStudObj in self.mArrayStudents)
+    {
+        int tech = 337; //0101010001;
+        int gum = 558;  //1010101110;
+        if(currentStudObj.subjectType & StudentSubjectProgramming)
+        {
+            self.quantityProgrammers++;
+        }
+        if((currentStudObj.subjectType & tech) > (currentStudObj.subjectType & gum))
+        {
+            [self.mArrayTechStudents addObject: currentStudObj];
+        }
+        else
+        {
+            [self.mArrayGumStudents addObject: currentStudObj];
+        }
+    }
+    NSLog(@"Студенты-технари:\n");
+    for (Student *currentTechStudent in self.mArrayTechStudents) {
+        NSLog(@"%@\n",currentTechStudent.firstName);
+    }
+    
+    NSLog(@"Студенты-гумманитарии:\n");
+    for (Student *currentGumStudent in self.mArrayGumStudents) {
+        NSLog(@"%@\n",currentGumStudent.firstName);
+    }
+    
+    NSLog(@"Кол-во студентов-программистов:%lu",self.quantityProgrammers);
     return YES;
 }
 
@@ -56,6 +89,30 @@
 -(StudentSubjectType)randomStudentSubjectType:(StudentSubjectType)type{
 
     return arc4random() % 2 ? type : 0;
+}
+
+#pragma mark -Initialization-
+- (NSMutableArray*)mArrayStudents{
+    if(!_mArrayStudents)
+    {
+        _mArrayStudents = [[NSMutableArray alloc] init];
+    }
+    return _mArrayStudents;
+}
+
+- (NSMutableArray*)mArrayGumStudents{
+    if(!_mArrayGumStudents)
+    {
+        _mArrayGumStudents = [[NSMutableArray alloc] init];
+    }
+    return _mArrayGumStudents;
+}
+- (NSMutableArray*)mArrayTechStudents{
+    if(!_mArrayTechStudents)
+    {
+        _mArrayTechStudents = [[NSMutableArray alloc] init];
+    }
+    return _mArrayTechStudents;
 }
 
 @end
