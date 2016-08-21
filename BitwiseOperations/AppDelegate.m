@@ -82,6 +82,20 @@
     }
     
     NSLog(@"Кол-во студентов-программистов:%lu",self.quantityProgrammers);
+    
+    
+    
+    for (Student *currentStudentObj in self.mArrayStudents)
+    {
+        if(currentStudentObj.subjectType & StudentSubjectBiology)
+        {
+            currentStudentObj.subjectType =  currentStudentObj.subjectType & 2031; //11111101111
+            NSLog(@"У студента %@ отменили уроки биологии",currentStudentObj.firstName);
+        }
+    }
+    NSInteger randomNumber = arc4random();
+    NSLog(@"Число %lu в двоичной системе исчисления:%@", randomNumber,[self bitwiseStringOfNumber:randomNumber]);
+    
     return YES;
 }
 
@@ -113,6 +127,33 @@
         _mArrayTechStudents = [[NSMutableArray alloc] init];
     }
     return _mArrayTechStudents;
+}
+
+
+
+- (NSString*)bitwiseStringOfNumber:(NSInteger)number{
+    NSMutableString *mBitwiseString;
+//    NSInteger currentNumber;
+//    currentNumber = number;
+    while(number >= 1)
+    {
+        if(!mBitwiseString)
+        {
+            mBitwiseString = [[NSMutableString alloc] init];
+        }
+        if(number % 2)
+        {
+          [mBitwiseString insertString:@"1" atIndex:0];
+        }
+        else
+        {
+          [mBitwiseString insertString:@"0" atIndex:0];
+        }
+        number = number/2;
+    }
+    
+    NSString *bitwiseString = [[NSString alloc] initWithString:mBitwiseString];
+    return bitwiseString;
 }
 
 @end
